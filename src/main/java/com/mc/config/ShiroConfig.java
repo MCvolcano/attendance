@@ -1,4 +1,4 @@
-package com.mc;
+package com.mc.config;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import org.apache.shiro.cache.MemoryConstrainedCacheManager;
