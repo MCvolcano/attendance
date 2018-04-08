@@ -89,21 +89,21 @@ $chunk = isset($_REQUEST["chunk"]) ? intval($_REQUEST["chunk"]) : 0;
 $chunks = isset($_REQUEST["chunks"]) ? intval($_REQUEST["chunks"]) : 1;
 
 
-// Remove old hui.temp files
+// Remove old temp files
 if ($cleanupTargetDir) {
     if (!is_dir($targetDir) || !$dir = opendir($targetDir)) {
-        die('{"jsonrpc" : "2.0", "error" : {"code": 100, "message": "Failed to open hui.temp directory."}, "id" : "id"}');
+        die('{"jsonrpc" : "2.0", "error" : {"code": 100, "message": "Failed to open temp directory."}, "id" : "id"}');
     }
 
     while (($file = readdir($dir)) !== false) {
         $tmpfilePath = $targetDir . DIRECTORY_SEPARATOR . $file;
 
-        // If hui.temp file is current file proceed to the next
+        // If temp file is current file proceed to the next
         if ($tmpfilePath == "{$filePath}_{$chunk}.part" || $tmpfilePath == "{$filePath}_{$chunk}.parttmp") {
             continue;
         }
 
-        // Remove hui.temp file if it is older than the max age and is not the current file
+        // Remove temp file if it is older than the max age and is not the current file
         if (preg_match('/\.(part|parttmp)$/', $file) && (@filemtime($tmpfilePath) < time() - $maxFileAge)) {
             @unlink($tmpfilePath);
         }
@@ -112,7 +112,7 @@ if ($cleanupTargetDir) {
 }
 
 
-// Open hui.temp file
+// Open temp file
 if (!$out = @fopen("{$filePath}_{$chunk}.parttmp", "wb")) {
     die('{"jsonrpc" : "2.0", "error" : {"code": 102, "message": "Failed to open output stream."}, "id" : "id"}');
 }
@@ -122,7 +122,7 @@ if (!empty($_FILES)) {
         die('{"jsonrpc" : "2.0", "error" : {"code": 103, "message": "Failed to move uploaded file."}, "id" : "id"}');
     }
 
-    // Read binary input stream and append it to hui.temp file
+    // Read binary input stream and append it to temp file
     if (!$in = @fopen($_FILES["file"]["tmp_name"], "rb")) {
         die('{"jsonrpc" : "2.0", "error" : {"code": 101, "message": "Failed to open input stream."}, "id" : "id"}');
     }

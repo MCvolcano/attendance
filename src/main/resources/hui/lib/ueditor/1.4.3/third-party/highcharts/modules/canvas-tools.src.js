@@ -2495,7 +2495,7 @@ if(!Array.prototype.indexOf){
 			this.base(node);
 						
 			this.apply = function(ctx, element) {
-				// render as hui.temp svg
+				// render as temp svg	
 				var x = this.attribute('x').Length.toPixels('x');
 				var y = this.attribute('y').Length.toPixels('y');
 				var width = this.attribute('width').Length.toPixels('x');
@@ -2559,7 +2559,7 @@ if(!Array.prototype.indexOf){
 			this.base(node);
 						
 			this.apply = function(ctx, element) {
-				// render as hui.temp svg
+				// render as temp svg	
 				var bb = element.getBoundingBox();
 				var x = this.attribute('x').Length.toPixels('x');
 				var y = this.attribute('y').Length.toPixels('y');

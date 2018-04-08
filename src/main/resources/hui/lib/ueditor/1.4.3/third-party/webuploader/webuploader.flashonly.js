@@ -173,7 +173,7 @@
      *
      * * module `base`：WebUploader.Base
      * * module `file`: WebUploader.File
-     * * module `hui.lib/dnd`: WebUploader.Lib.Dnd
+     * * module `lib/dnd`: WebUploader.Lib.Dnd
      * * module `runtime/html5/dnd`: WebUploader.Runtime.Html5.Dnd
      *
      *
@@ -1131,7 +1131,7 @@
     /**
      * @fileOverview Blob
      */
-    define('hui.lib/blob',[
+    define('lib/blob',[
         'base',
         'runtime/client'
     ], function( Base, RuntimeClient ) {
@@ -1172,7 +1172,7 @@
      * 以至于要调用Flash里面的File，也可以像调用HTML5版本的File一下。
      * @fileOverview File
      */
-    define('hui.lib/file',[
+    define('lib/file',[
         'base',
         'lib/blob'
     ], function( Base, Blob ) {
@@ -1212,7 +1212,7 @@
     /**
      * @fileOverview 错误信息
      */
-    define('hui.lib/filepicker',[
+    define('lib/filepicker',[
         'base',
         'runtime/client',
         'lib/file'
@@ -1642,7 +1642,7 @@
     /**
      * @fileOverview Image
      */
-    define('hui.lib/image',[
+    define('lib/image',[
         'base',
         'runtime/client',
         'lib/blob'
@@ -2028,7 +2028,7 @@
          * @class File
          * @constructor 构造函数
          * @grammar new File( source ) => File
-         * @param {Lib.File} source [hui.lib.File](#Lib.File)实例, 此source对象是带有Runtime信息的。
+         * @param {Lib.File} source [lib.File](#Lib.File)实例, 此source对象是带有Runtime信息的。
          */
         function WUFile( source ) {
     
@@ -2554,7 +2554,7 @@
     
             /**
              * @event filesQueued
-             * @param {File} files 数组，内容为原始File(hui.lib/File）对象。
+             * @param {File} files 数组，内容为原始File(lib/File）对象。
              * @description 当一批文件添加进队列以后触发。
              * @for  Uploader
              */
@@ -2747,7 +2747,7 @@
     /**
      * @fileOverview Transport
      */
-    define('hui.lib/transport',[
+    define('lib/transport',[
         'base',
         'runtime/client',
         'mediator'

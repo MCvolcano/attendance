@@ -14,13 +14,13 @@ $maxFileAge = 5 * 3600; // Temp file age in seconds
 
 if ($cleanupTargetDir) {
     if (!is_dir($DIR) || !$dir = opendir($DIR)) {
-        die('{"jsonrpc" : "2.0", "error" : {"code": 100, "message": "Failed to open hui.temp directory."}, "id" : "id"}');
+        die('{"jsonrpc" : "2.0", "error" : {"code": 100, "message": "Failed to open temp directory."}, "id" : "id"}');
     }
 
     while (($file = readdir($dir)) !== false) {
         $tmpfilePath = $DIR . DIRECTORY_SEPARATOR . $file;
 
-        // Remove hui.temp file if it is older than the max age and is not the current file
+        // Remove temp file if it is older than the max age and is not the current file
         if (@filemtime($tmpfilePath) < time() - $maxFileAge) {
             @unlink($tmpfilePath);
         }
