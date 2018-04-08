@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mc.dao.ResDao">
+    <resultMap id="m1" type="com.mc.entity.Resources">
+        <result property="name" column="name"></result>
+        <result property="resid" column="pid"></result>
+        <result property="pid" column="pid"/>
+        <collection property="children" javaType="com.mc.entity.Resources">
+            <result property="resid" column="resid"/>
+            <result property="pid" column="pid"/>
+            <result property="name" column="r_name"/>
+            <result property="url" column="r_url"/>
+
+        </collection>
+    </resultMap>
+
+    <resultMap id="m2" type="com.mc.entity.Res">
+        <result property="id" column="resid"></result>
+        <result property="name" column="name"></result>
+        <result property="url" column="url"></result>
+        <result property="_pid" column="pid"/>
+    </resultMap>
+
+    <select id="findAllRes" resultMap="m1" parameterType="int">
+        select p.name,r.name as r_name,r.url as r_url
+        from resources p
+        left join resources r on r.pid=p.resid
+        left join roleres rr on r.resid=rr.resid
+        left join userrole ur on rr.rid=ur.rid
+        where p.pid=0 and ur.uid=#{uid}
+    </select>
+
+    <!--所有资源-->
+    <select id="findAllResForRole" resultMap="m1">
+      select p.name,r.name as r_name,r.url as r_url,r.resid , r.pid,p.pid,p.resid
+        from resources p
+        left join resources r on r.pid=p.resid
+        where p.pid=0
+    </select>
+
+    <!--所有资源-->
+    <select id="findResForRole" parameterType="int" resultMap="m1">
+        select p.name,r.name as r_name,r.url as r_url,r.resid , r.pid,p.pid,p.resid
+        from resources p
+        left join resources r on r.pid=p.resid
+        left join roleres rr on rr.resid=r.resid
+        where p.pid=0 and rr.rid=#{rid}
+    </select>
+
+    <select id="findRes" resultMap="m2">
+        select resid,name,url,pid from resources
+    </select>
+
+    <insert id="saveRes" parameterType="com.mc.entity.Resources">
+        insert into resources(name,url,pid) values(#{name},#{url},#{pid})
+    </insert>
+
+    <delete id="deleteRes" parameterType="int">
+        delete from resources where resid=#{resid}
+       <!-- delete from resources where resid in
+        <foreach collection="list" item="resid" open="(" close=")" separator=",">
+            #{resid}
+        </foreach>-->
+    </delete>
+
+    <update id="updateRes" parameterType="com.mc.entity.Resources">
+        update resources set name=#{name},url=#{url},pid=#{pid} where resid=#{resid}
+    </update>
+
+</mapper>
+

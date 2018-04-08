@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml"
+      xmlns:v-bind="http://www.w3.org/1999/xhtml" xmlns:v-for="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script src="js/vue.js"></script>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script src="js/index.js"></script>
+    <script src="js/axios.min.js"></script>
+    <!--<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>-->
+</head>
+<body>
+<div id="d1" @click="clickDiv">
+    {{msg}}
+    <div v-html="message"></div>
+    <input type="text" id="name" v-model="msg">
+    <p v-if="seen">QAQ</p>
+    <a v-bind:href="url">嘤嘤嘤</a>
+    <div v-for="site in sites">
+        {{site.name}}
+    </div>
+    <textarea scrollHeight="auto" placeholder="请输入详细地址"></textarea>
+
+    <p contenteditable="true" style="width: 200px;min-height: 150px; border: 1px solid black;">111</p>
+
+    <el-row>
+        <el-button icon="el-icon-search" circle></el-button>
+        <el-button type="primary" icon="el-icon-edit" circle></el-button>
+        <el-button type="success" icon="el-icon-check" circle></el-button>
+        <el-button type="info" icon="el-icon-message" circle></el-button>
+        <el-button type="warning" icon="el-icon-star-off" circle></el-button>
+        <el-button type="danger" icon="el-icon-delete" circle></el-button>
+    </el-row>
+
+    <li v-for="a in arr">
+        {{a}}
+    </li>
+
+</div>
+
+
+
+<script type="text/javascript">
+    var v = new Vue({
+        el: "#d1",
+        data: {
+            msg: "12345",
+            message: "<h4>老虎不吃人</h4>",
+            seen: true,
+            url: "shunfengzero.cn",
+            sites: [
+                {name: "小明"},
+                {name: "小红"},
+                {name: "小刚"}
+            ],
+            arr:[]
+
+        },
+        methods: {
+            init(row, pagesize, flag){
+                 axois({
+                     method:'post',
+                     url:'findAllStudent',
+                     params:{
+                         "row":row,
+                         "pagesize":pagesize,
+                         "flag":flag
+                     }
+                 })
+            },
+            clickDiv: function () {
+                this.msg = "上山打老虎"
+            },
+            showDetail: function () {
+                this.$http.get("/findAllUser").then(function (res) {
+                    this.arr = res.body;
+                })
+            },
+        }
+
+
+        
+
+
+
+
+    })
+
+</script>
+<!--
+el
+data
+filters
+methods
+computed 计算属性关键词 methods 来替代 computed，
+效果上两个都是一样的，但是 computed 是基于它的依赖缓存，
+只有相关依赖发生改变时才会重新取值。而使用 methods ，
+在重新渲染的时候，函数总会重新调用执行。
+computed 对象内的方法如果在初始化时绑定到元素上的事件会先
+执行一次这个方法 ，而 methods 内的方法则不会；
+watch 监听
+ directives 设置局部指令
+
+v-on:click @click
+v-model
+v-bind:href  :href
+
+v-if
+v-else-if
+v-else
+
+v-for="site in sites"
+{{site.name}}
+
+v-on
+    stop
+    prevent
+    capture
+    self
+    once
+@click
+@keyup
+    .enter
+    .tab
+    .delete (捕获 "删除" 和 "退格" 键)
+    .esc
+    .space
+    .up
+    .down
+    .left
+    .right
+    .ctrl
+    .alt
+    .shift
+    .meta
+
+-->
+
+
+</body>
+</html>

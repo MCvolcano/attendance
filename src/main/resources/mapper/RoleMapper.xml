@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mc.dao.RoleDao">
+
+    <select id="findAllRole" resultType="com.mc.entity.Role">
+        SELECT * FROM role
+    </select>
+
+    <insert id="addRole" parameterType="com.mc.entity.Role">
+        insert into role(rname) values(#{rname})
+    </insert>
+
+
+    <delete id="deleteRole" parameterType="list">
+        delete from role where rid IN
+        <foreach collection="list" item="id" open="(" close=")" separator=",">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateRole" parameterType="com.mc.entity.Role">
+        update role set rname=#{rname} where rid=#{rid}
+    </update>
+    
+    <insert id="fenpei" parameterType="map">
+        insert into roleres(rid,rrid) VALUES 
+        <foreach collection="ps" item="rrid" separator=",">
+            (#{rid},#{rrid})
+        </foreach>
+    </insert>
+
+    <delete id="deleteRoleRes" parameterType="int">
+        delete from roleres where rid=#{rid}
+    </delete>
+
+</mapper>
+
