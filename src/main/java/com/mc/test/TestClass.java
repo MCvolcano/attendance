@@ -1,6 +1,11 @@
 package com.mc.test;
 
+import com.mc.entity.Teacher;
+
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
+import java.util.UUID;
 
 /**
  * @Author：马灿
@@ -9,48 +14,23 @@ import java.util.Arrays;
  */
 public class TestClass {
     public static void main(String[] args) {
-        int[] arr = {2,1,6,3,5,4,9,7,8};
-//        Arrays.sort(arr);
-        TestClass t = new TestClass();
-        System.out.println(Arrays.toString(arr));
-        t.selectSort(arr);
-        System.out.println("选择排序 " + Arrays.toString(arr));
-        t.bubbleSort(arr);
-        System.out.println("冒泡排序 " + Arrays.toString(arr));
+
+
     }
 
-    //选择排序
-    public void selectSort(int[] arr) {
-        int min;
-        for (int i = 0; i < arr.length - 1; i++) {
-            min = i;
-            for (int j = i + 1; j < arr.length; j++) {
-                if (arr[min] < arr[j]) {
-                    min = j;
-                }
-            }
-            if(min != i) {
-                int temp = arr[min];
-                arr[min] = arr[i];
-                arr[i] = temp;
-            }
+    public static void addTeacher(){
+        List<Teacher> list = new ArrayList<>();
+        Teacher a = new Teacher();
+        for (int i = 0; i <10; i++) {
+            a.setId(UUID.randomUUID().toString());
+            a.setName("教师" + i);
+            a.setAge(20 + i);
+            a.setPhone("1726666888" + i);
+            a.setEmail("231441231@qq.com");
+            a.setQq("231441231");
         }
     }
-    //快速排序
 
-
-    //冒泡排序
-    public void bubbleSort(int[] arr) {
-        for (int i = 0; i < arr.length - 1; i++) {
-            for (int j = 0; j < arr.length - 1 - i; j++) {
-                if (arr[j] < arr[j + 1]) {
-                    int temp = arr[j];
-                    arr[j] = arr[j + 1];
-                    arr[j + 1] = temp;
-                }
-            }
-        }
-    }
 
 
 

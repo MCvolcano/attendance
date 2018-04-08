@@ -3,20 +3,20 @@ package com.mc.entity;
 
 public class Student {
 
-  private long id;
+  private String id;
   private String name;
   private long age;
   private String sex;
   private String url;
-  private long gid;
-  private long fid;
+  private String gid;
+  private String fid;
 
 
-  public long getId() {
+  public String getId() {
     return id;
   }
 
-  public void setId(long id) {
+  public void setId(String id) {
     this.id = id;
   }
 
@@ -57,20 +57,20 @@ public class Student {
   }
 
 
-  public long getGid() {
+  public String getGid() {
     return gid;
   }
 
-  public void setGid(long gid) {
+  public void setGid(String gid) {
     this.gid = gid;
   }
 
 
-  public long getFid() {
+  public String getFid() {
     return fid;
   }
 
-  public void setFid(long fid) {
+  public void setFid(String fid) {
     this.fid = fid;
   }
 

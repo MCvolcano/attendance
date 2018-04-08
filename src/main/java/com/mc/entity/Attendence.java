@@ -3,16 +3,16 @@ package com.mc.entity;
 
 public class Attendence {
 
-  private long id;
+  private String id;
   private java.sql.Timestamp date;
   private String state;
 
 
-  public long getId() {
+  public String getId() {
     return id;
   }
 
-  public void setId(long id) {
+  public void setId(String id) {
     this.id = id;
   }
 

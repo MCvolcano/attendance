@@ -3,16 +3,16 @@ package com.mc.entity;
 
 public class Class {
 
-  private long id;
+  private String id;
   private String gname;
-  private long fid;
+  private String fid;
 
 
-  public long getId() {
+  public String getId() {
     return id;
   }
 
-  public void setId(long id) {
+  public void setId(String id) {
     this.id = id;
   }
 
@@ -26,11 +26,11 @@ public class Class {
   }
 
 
-  public long getFid() {
+  public String getFid() {
     return fid;
   }
 
-  public void setFid(long fid) {
+  public void setFid(String fid) {
     this.fid = fid;
   }
 
